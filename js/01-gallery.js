@@ -43,7 +43,7 @@ const markup = galleryItems
 </div>
       `
   )
-  .join(); // рядок, який містить версику картинок галереї
+  .join(""); // рядок, який містить версику картинок галереї
 
 const galleryEl = document.querySelector(".gallery");
 
@@ -54,9 +54,11 @@ galleryEl.addEventListener("click", openLarge);
 function openLarge(event) {
   event.preventDefault();
   const largeImgAddress = event.target.getAttribute("data-source");
-  const instance = basicLightbox.create(`
-                        <img src="${largeImgAddress}" />
-                    `);
+  const instance = basicLightbox.create(`<img src="${largeImgAddress}" />`, {
+    onClose: () => {
+      document.removeEventListener("keydown", onEscapeDown);
+    },
+  });
   instance.show();
 
   document.addEventListener("keydown", onEscapeDown);

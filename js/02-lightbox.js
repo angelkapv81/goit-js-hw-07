@@ -42,7 +42,7 @@ const markup = galleryItems
 </div>
       `
   )
-  .join(); // рядок, який містить версику картинок галереї
+  .join(''); // рядок, який містить версику картинок галереї
 
 const galleryEl = document.querySelector(".gallery");
 
